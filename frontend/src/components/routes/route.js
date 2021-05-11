@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import {
   BrowserRouter as Router,
   Redirect,
@@ -7,17 +7,28 @@ import {
 } from "react-router-dom";
 import Feed from "../pages/feed";
 import Log from "../pages/logIn/index";
+import { UidContext } from "../AppContext";
+import Navbar from "../Navbar";
 
-export default function route() {
+export default function Routing() {
+  const uid = useContext(UidContext);
   return (
     <div>
-      <Router>
-        <Switch>
-          <Route path="/feed" exact component={Feed} />
-          <Route path="/" exact component={Log} />
-          <Redirect to="/"></Redirect>
-        </Switch>
-      </Router>
+      {uid ? (
+        <Router>
+          <Switch>
+            <Route path="/" exact component={Feed} />
+            <Redirect to="/"></Redirect>
+          </Switch>
+        </Router>
+      ) : (
+        <Router>
+          <Switch>
+            <Route path="/" exact component={Log}></Route>
+            <Redirect to="/"></Redirect>
+          </Switch>
+        </Router>
+      )}
     </div>
   );
 }

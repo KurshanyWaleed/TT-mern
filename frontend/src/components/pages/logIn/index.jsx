@@ -1,13 +1,17 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import "./style.css";
 import SignIn from "../logIn/signIn";
 import SignUp from "../logIn/signUp";
-import ButtonGroup from "@material-ui/core/ButtonGroup";
-import Button from "@material-ui/core/Button";
+//import ButtonGroup from "@material-ui/core/ButtonGroup";
+//import Button from "@material-ui/core/Button";
+import { UidContext } from "../../AppContext";
+import Feed from "../feed";
 
 function Log() {
-  const styleb = { width: "50%", height: "50px" };
   const [isActive, setIsActive] = useState(false);
+
+  const styleb = { width: "50%", height: "50px" };
+
   const handeOnClick = (e) => {
     console.log(e.target);
     console.log(isActive);

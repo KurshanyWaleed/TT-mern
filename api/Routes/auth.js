@@ -27,12 +27,18 @@ router.post("/register", async (req, res) => {
     name: req.body.name,
     email: req.body.email,
     password: hashPassword,
-    imgUrl: req.body.imgUrl,
-    typeOfUser: req.body.typeOfUser,
+    gender: req.body.gender,
+    //imgUrl: req.body.imgUrl,
+    type: req.body.type,
   });
   try {
     const savedUser = await user.save();
-    res.send({ user: savedUser._id });
+
+    //res.send({ user: savedUser._id });
+
+    const token = jwt.sign({ _id: savedUser._id }, "SECRET"); // TOKEN SECRET
+    res.cookie("jwt", token);
+    res.send({ success: "true", token: token });
   } catch (err) {
     res.status(400).send({ err: err });
   }

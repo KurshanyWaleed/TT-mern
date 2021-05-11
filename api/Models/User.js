@@ -1,3 +1,4 @@
+const { string } = require("@hapi/joi");
 const mongoose = require("mongoose");
 const userSchema = new mongoose.Schema(
   {
@@ -48,7 +49,7 @@ const userSchema = new mongoose.Schema(
       type: String,
       default: "4340a1e9b961a04b66504114db99ae57.jpg",
     },
-    typeOfUser: {
+    type: {
       type: String,
       required: true,
     },
@@ -64,6 +65,9 @@ const userSchema = new mongoose.Schema(
     },
     likes: {
       type: [String],
+    },
+    gender: {
+      type: String,
     },
   },
   { timestamps: true }

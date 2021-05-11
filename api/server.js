@@ -4,7 +4,7 @@ require("dotenv").config();
 const cors = require("cors");
 const app = express();
 const cookieParser = require("cookie-parser");
-
+const { checkUser, requireAuth } = require("./middleware/auth.middleware");
 // Import Routes
 const authRouter = require("./Routes/auth");
 const postsRouter = require("./Routes/posts");
@@ -36,6 +36,12 @@ app.use(bodyParser.urlencoded({extended: true}));
 */
 app.use(express.json());
 app.use(cookieParser());
+
+// jwt
+app.get("*", checkUser);
+app.get("/jwtid", requireAuth, (req, res) => {
+  res.status(200).send(req.user._id);
+});
 
 // Route Middlewares
 app.use("/api/auth", authRouter);

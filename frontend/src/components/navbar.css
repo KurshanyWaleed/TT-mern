@@ -1,0 +1,7 @@
+.div-navbar {
+  width: 200vh;
+  display: flex;
+  background-color: #1aa9e9;
+  box-shadow: -3px 0px 10px 0px #030202;
+  height: 50px;
+}
